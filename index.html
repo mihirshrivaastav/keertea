@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KeerTea Naturals — Premium Tea & Spices</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Global toast used for quick feedback like add-to-cart and form actions. -->
+<div class="toast" id="toast"></div>
+
+<!-- Full-screen mobile navigation toggled from the hamburger button. -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mm-close" onclick="closeMobile()">✕</button>
+  <a href="#hero" onclick="closeMobile()">Home</a>
+  <a href="#benefits" onclick="closeMobile()">Benefits</a>
+  <a href="#products" onclick="closeMobile()">Shop</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- Sticky site navigation. Cart count is updated dynamically from script.js. -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Keertea <span>Naturals</span></a>
+  <ul class="nav-links">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#benefits">Benefits</a></li>
+    <li><a href="#products">Shop</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div style="display:flex;gap:.8rem;align-items:center">
+    <button class="cart-btn" onclick="toggleCart()">
+      🛒 Cart <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <button class="hamburger" onclick="openMobile()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero section introduces the brand promise and primary call-to-action. -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">100% Natural &amp; Chemical-Free</div>
+    <h1 class="hero-title">
+      Pure gifts from<br>
+      <em>Mother</em> <strong>Earth</strong>
+    </h1>
+    <p class="hero-desc">
+      Hand-picked, sun-dried, and lovingly packed — our teas, nuts, and spices carry the untouched goodness of nature, straight to your home.
+    </p>
+    <div class="hero-cta">
+      <a href="#products" class="btn-primary">Shop Now</a>
+      <a href="#benefits" class="btn-outline">Our Promise</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Organic</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">0</div>
+        <div class="stat-label">Additives</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">12K+</div>
+        <div class="stat-label">Happy Families</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-image-ring">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&q=80" alt="Natural products">
+    </div>
+    <div class="hero-badge">
+      <div class="hero-badge-icon">🌿</div>
+      <div class="hero-badge-text">
+        <strong>Farm to Table</strong>
+        <span>No middlemen</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Brand trust signals and value proposition cards. -->
+<section id="benefits">
+  <div class="section-tag">Why Choose Us</div>
+  <h2 class="section-title">Nature knows best</h2>
+  <p class="section-subtitle">Every product we carry is held to a standard that goes beyond organic certification.</p>
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <div class="benefit-icon">🌱</div>
+      <h3>100% Organic Sourcing</h3>
+      <p>Directly partnered with small farms that use no synthetic fertilizers or pesticides, ever.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">❤️</div>
+      <h3>Rich in Nutrients</h3>
+      <p>Minimal processing preserves vitamins, minerals, and antioxidants naturally present in each ingredient.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">🚫</div>
+      <h3>Zero Chemicals</h3>
+      <p>No preservatives, artificial colors, or flavor enhancers — just pure, wholesome goodness.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">🌍</div>
+      <h3>Eco-Friendly Packaging</h3>
+      <p>Compostable and recyclable packaging because we care for the earth as much as your health.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">🔬</div>
+      <h3>Lab Tested</h3>
+      <p>Every batch is third-party lab tested for purity, potency, and freedom from contaminants.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">🤝</div>
+      <h3>Fair Trade</h3>
+      <p>We ensure farmers receive fair compensation, supporting sustainable livelihoods and communities.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Product cards are rendered here dynamically from the PRODUCTS array. -->
+<section id="products">
+  <div class="products-header">
+    <div>
+      <div class="section-tag">Our Collection</div>
+      <h2 class="section-title">Nature's finest, curated</h2>
+    </div>
+  </div>
+  <div class="products-grid" id="productsGrid"></div>
+</section>
+
+<!-- Contact/newsletter section kept simple for a landing-page flow. -->
+<div class="newsletter" id="contact">
+  <h2>Stay close to Nature</h2>
+  <p>Get seasonal harvest updates, wellness tips, and exclusive offers.</p>
+  <div class="nl-form">
+    <input class="nl-input" type="email" placeholder="your@email.com">
+    <button class="nl-btn" onclick="showToast('🌿 Subscribed! Welcome to the Keertea family.')">Subscribe</button>
+  </div>
+</div>
+
+<!-- Footer keeps quick links grouped for future expansion. -->
+<footer>
+  <div class="footer-brand">
+    <h3>Keertea <span>Naturals</span></h3>
+    <p>Bringing you the purest gifts from earth — teas, nuts, and spices sourced with love and integrity.</p>
+  </div>
+  <div>
+    <h4>Shop</h4>
+    <ul>
+      <li><a href="#products">Tea Leaves</a></li>
+      <li><a href="#products">Cashew Nuts</a></li>
+      <li><a href="#products">Elaichi</a></li>
+      <li><a href="#products">Gift Sets</a></li>
+    </ul>
+  </div>
+  <div>
+    <h4>Company</h4>
+    <ul>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Our Farms</a></li>
+      <li><a href="#">Certifications</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">© 2025 Keertea Naturals. Made with 🌿 in India.</div>
+
+<!-- Cart overlay and drawer are opened/closed by shared toggleCart() logic. -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h2>Your Cart 🛒</h2>
+    <button class="cart-close" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total-row">
+      <span class="cart-total-label">Subtotal</span>
+      <span class="cart-total-val" id="cartSubtotal">₹0</span>
+    </div>
+    <div class="cart-total-row">
+      <span class="cart-total-label">Shipping</span>
+      <span class="cart-total-val">FREE</span>
+    </div>
+    <div class="cart-grand-row">
+      <span class="cart-grand-label">Total</span>
+      <span class="cart-grand-val" id="cartTotal">₹0</span>
+    </div>
+    <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout →</button>
+  </div>
+</div>
+
+<!-- Checkout modal collects basic customer details before order confirmation. -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal">
+    <div class="modal-top">
+      <h2 class="modal-title">Checkout</h2>
+      <button class="modal-close" onclick="closeCheckout()">✕</button>
+    </div>
+    <div class="modal-summary" id="checkoutSummary"></div>
+    <div class="modal-form">
+      <label>Full Name</label>
+      <input type="text" placeholder="Priya Sharma" id="chkName">
+      <label>Phone Number</label>
+      <input type="tel" placeholder="+91 98765 43210" id="chkPhone">
+      <label>Delivery Address</label>
+      <input type="text" placeholder="House No., Street, City — PIN" id="chkAddr">
+      <label>Payment Method</label>
+      <select id="chkPay">
+        <option>UPI / GPay / PhonePe</option>
+        <option>Net Banking</option>
+        <option>Credit / Debit Card</option>
+        <option>Cash on Delivery</option>
+      </select>
+    </div>
+    <button class="pay-btn" onclick="placeOrder()">💳 Proceed to Payment</button>
+    <p class="modal-note">🔒 Secure & encrypted checkout. Your data is safe.</p>
+  </div>
+</div>
+
+<!-- Success modal is shown after placeOrder() clears the cart state. -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal success-modal">
+    <div class="success-icon">🎉</div>
+    <h2 class="success-title">Order Placed!</h2>
+    <p class="success-msg" id="successMsg">Thank you for your order. We'll dispatch it shortly.<br><br>Expect delivery in 3–5 business days.</p>
+    <br>
+    <button class="btn-primary" style="margin:0 auto;display:block" onclick="closeSuccess()">Continue Shopping</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
