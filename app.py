@@ -217,7 +217,7 @@ def call_payment_provider(provider, amount_rupees, order_id, customer_name):
             {
                 "amount": amount_paise,
                 "currency": "inr",
-                "description": f"Tapri order #{order_id} for {customer_name}",
+                "description": f"KeerTea order #{order_id} for {customer_name}",
                 "metadata[order_id]": order_id,
             }
         ).encode()
@@ -248,7 +248,7 @@ def call_payment_provider(provider, amount_rupees, order_id, customer_name):
             {
                 "amount": amount_paise,
                 "currency": "INR",
-                "receipt": f"tapri-{order_id}",
+                "receipt": f"keertea-{order_id}",
                 "notes": {"customer_name": customer_name},
             }
         ).encode()
