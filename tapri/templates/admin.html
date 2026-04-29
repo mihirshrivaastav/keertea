@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KeerTea Admin</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+  <div class="page">
+    <div class="topbar">
+      <div>
+        <h1>KeerTea Admin Panel</h1>
+        <p class="muted">Manage products, inventory, and incoming orders from one place.</p>
+      </div>
+      <div class="topbar-actions">
+        <div class="session-note">Signed in as {{ session.get("admin_username", "admin") }}</div>
+        <a href="/">Back to storefront</a>
+        <form method="post" action="{{ url_for('admin.logout_submit') }}">
+          <button class="secondary" type="submit">Log Out</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section class="panel">
+        <h2>Product Editor</h2>
+        <p class="muted">Create a new product or load one from the list to update it.</p>
+
+        <input type="hidden" id="productId">
+
+        <label for="name">Name</label>
+        <input id="name" type="text">
+
+        <label for="category">Category</label>
+        <input id="category" type="text">
+
+        <label for="pricePerUnit">Price Per Unit</label>
+        <input id="pricePerUnit" type="number" min="1" step="1">
+
+        <label for="unit">Unit</label>
+        <select id="unit">
+          <option value="kg">kg</option>
+          <option value="100g">100g</option>
+        </select>
+
+        <label for="minWeight">Minimum Weight (grams)</label>
+        <input id="minWeight" type="number" min="1" step="1">
+
+        <label for="maxWeight">Maximum Weight (grams)</label>
+        <input id="maxWeight" type="number" min="1" step="1">
+
+        <label for="inventoryGrams">Inventory (grams)</label>
+        <input id="inventoryGrams" type="number" min="0" step="1">
+
+        <label for="badge">Badge</label>
+        <input id="badge" type="text">
+
+        <label for="rating">Rating</label>
+        <input id="rating" type="text" value="★★★★★">
+
+        <label for="img">Image URL</label>
+        <input id="img" type="url">
+        <div class="hint">Paste an image URL, or upload a file below and it will fill this field for you.</div>
+
+        <label for="imageFile">Upload Image</label>
+        <div class="inline-row">
+          <input id="imageFile" type="file" accept="image/png,image/jpeg,image/webp,image/gif">
+          <button class="secondary" type="button" id="uploadBtn">Upload</button>
+        </div>
+        <div class="hint" id="uploadStatus">No image uploaded yet.</div>
+
+        <label for="desc">Description</label>
+        <textarea id="desc"></textarea>
+
+        <label for="isActive">Active on storefront</label>
+        <select id="isActive">
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+
+        <div class="actions">
+          <button class="primary" id="saveBtn" type="button">Save Product</button>
+          <button class="secondary" id="resetBtn" type="button">Clear</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Products</h2>
+        <div class="list" id="productsList"></div>
+
+        <h2 style="margin-top:28px;">Orders</h2>
+        <div class="list" id="ordersList"></div>
+      </section>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+</body>
+</html>

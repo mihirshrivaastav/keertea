@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/admin-auth.css') }}">
+</head>
+<body>
+  <main class="auth-shell">
+    <section class="auth-card">
+      <div class="auth-copy">
+        <p class="eyebrow">KeerTea Admin</p>
+        <h1>Sign in to manage products</h1>
+        <p class="muted">Only authenticated admins can access the product dashboard and order tools.</p>
+      </div>
+
+      {% if error %}
+      <div class="error-banner">{{ error }}</div>
+      {% endif %}
+
+      <form method="post" action="{{ url_for('admin.login_submit', next=request.args.get('next', '')) }}" class="auth-form">
+        <input type="hidden" name="next" value="{{ request.args.get('next', '') }}">
+
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" autocomplete="username" required>
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+
+        <button type="submit">Sign In</button>
+      </form>
+
+      <a class="back-link" href="/">Back to storefront</a>
+    </section>
+  </main>
+</body>
+</html>

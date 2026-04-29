@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+
+server.out.log
+server.err.log
+
+data/
+uploads/
+*.db
+*.db-journal
+
+tiny-test.png

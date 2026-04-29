@@ -8,6 +8,8 @@ let cart = {};
 // Stores the current slider selection for each product card before it is added.
 const localWeights = {};
 let toastTimer;
+let productSyncTimer;
+let visibilityHandlerAttached = false;
 
 function formatCurrency(amount) {
   return `Rs ${Math.round(amount).toLocaleString()}`;
@@ -22,6 +24,12 @@ function computeItemPrice(product, weight) {
     return product.pricePerUnit * weight / 1000;
   }
   return product.pricePerUnit * weight / 100;
+}
+
+function getProductImageSrc(product) {
+  const separator = product.img.includes("?") ? "&" : "?";
+  const version = encodeURIComponent(product.imageVersion || product.id);
+  return `${product.img}${separator}v=${version}`;
 }
 
 async function fetchProducts() {
@@ -58,7 +66,7 @@ function buildProducts() {
     return `
       <div class="product-card" id="pc-${product.id}">
         <div class="product-img-wrap">
-          <img src="${product.img}" alt="${product.name}" loading="lazy">
+          <img src="${getProductImageSrc(product)}" alt="${product.name}" loading="lazy">
           <span class="product-badge">${product.badge}</span>
         </div>
         <div class="product-body">
@@ -173,7 +181,7 @@ function renderCart() {
   const subtotal = items.reduce((sum, item) => sum + (item.price * item.qty), 0);
   wrap.innerHTML = items.map((item, idx) => `
     <div class="cart-item">
-      <img class="cart-item-img" src="${item.img}" alt="${item.name}">
+      <img class="cart-item-img" src="${getProductImageSrc(item)}" alt="${item.name}">
       <div class="cart-item-info">
         <div class="cart-item-name">${item.name}</div>
         <div class="cart-item-weight">${item.weight}g</div>
@@ -364,5 +372,33 @@ async function initializeStorefront() {
   }
 }
 
-// Initialize the storefront after the backend-backed catalog is available.
-initializeStorefront();
+async function syncProductsInBackground() {
+  try {
+    await fetchProducts();
+    buildProducts();
+    renderCart();
+  } catch (error) {
+    console.error("Background product sync failed:", error);
+  }
+}
+
+function startProductSync() {
+  if (productSyncTimer) {
+    clearInterval(productSyncTimer);
+  }
+  productSyncTimer = setInterval(syncProductsInBackground, 10000);
+  if (!visibilityHandlerAttached) {
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) {
+        syncProductsInBackground();
+      }
+    });
+    visibilityHandlerAttached = true;
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Delaying initialization until the DOM is ready avoids null-element bugs during template changes.
+  initializeStorefront();
+  startProductSync();
+});

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KeerTea Naturals - Premium Tea & Spices</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <div class="toast" id="toast"></div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mm-close" onclick="closeMobile()">×</button>
+    <a href="#hero" onclick="closeMobile()">Home</a>
+    <a href="#about" onclick="closeMobile()">About</a>
+    <a href="#products" onclick="closeMobile()">Shop</a>
+    <a href="#contact" onclick="closeMobile()">Contact</a>
+  </div>
+
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">KeerTea <span>Naturals</span></a>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#products">Shop</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div style="display:flex;gap:.8rem;align-items:center">
+      <button class="cart-btn" onclick="toggleCart()">
+        Cart <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="hamburger" onclick="openMobile()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section id="hero">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Established in 1995 • Varanasi</div>
+      <h1 class="hero-title">
+        Trusted chai and<br>
+        <em>quality products</em> <strong>since 1995</strong>
+      </h1>
+      <p class="hero-desc">
+        Based in Varanasi, we import chai and selected products directly from Darjiling, Assam, and Tamil Nadu to serve both B2B and B2C customers with consistent quality and dependable service.
+      </p>
+      <div class="hero-cta">
+        <a href="#products" class="btn-primary">Shop Now</a>
+        <a href="#contact" class="btn-outline">Contact Us</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">1995</div>
+          <div class="stat-label">Established</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">B2B</div>
+          <div class="stat-label">Business Supply</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">B2C</div>
+          <div class="stat-label">Retail Customers</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-image-ring">
+        <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&q=80" alt="Natural products">
+      </div>
+      <div class="hero-badge">
+        <div class="hero-badge-icon">Direct</div>
+        <div class="hero-badge-text">
+          <strong>Source Led</strong>
+          <span>Darjiling, Assam, Tamil Nadu</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-tag">About Us</div>
+    <h2 class="section-title">A Varanasi shop built on quality and long-term trust</h2>
+    <p class="section-subtitle">Since 1995, we have focused on outstanding quality products and reliable service for homes, retailers, and bulk buyers.</p>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">1995</div>
+        <h3>Established Heritage</h3>
+        <p>Our shop has served customers since 1995, building long-standing relationships through dependable quality and service.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">VNS</div>
+        <h3>Varanasi Based</h3>
+        <p>We operate from Varanasi and serve customers locally as well as buyers looking for trusted supply support.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">Direct</div>
+        <h3>Direct Sourcing</h3>
+        <p>We import our chai and products directly from Darjiling, Assam, and Tamil Nadu to maintain quality from source to sale.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">B2B</div>
+        <h3>B2B and B2C</h3>
+        <p>We support both retail customers and business buyers, making the same product range available for everyday and bulk needs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="products">
+    <div class="products-header">
+      <div>
+        <div class="section-tag">Our Collection</div>
+        <h2 class="section-title">Nature's finest, curated</h2>
+      </div>
+    </div>
+    <div class="products-grid" id="productsGrid"></div>
+  </section>
+
+  <div class="newsletter" id="contact">
+    <h2>Visit or contact our Varanasi shop</h2>
+    <p>We are available for both wholesale and retail enquiries.</p>
+    <div class="contact-details">
+      <div class="contact-card">
+        <h3>Address</h3>
+        <p>Golghar Kachari, Near Vissu Katra, Katra, Varanasi-221001, Uttar Pradesh</p>
+      </div>
+      <div class="contact-card">
+        <h3>Email</h3>
+        <p><a href="mailto:mihir.srivastava001@gamil.com">mihir.srivastava001@gamil.com</a></p>
+      </div>
+      <div class="contact-card">
+        <h3>Business Type</h3>
+        <p>B2B and B2C supply of chai and selected products.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-brand">
+      <h3>KeerTea <span>Naturals</span></h3>
+      <p>Established in 1995 in Varanasi, serving both B2B and B2C customers with directly sourced chai and quality products.</p>
+    </div>
+    <div>
+      <h4>Sources</h4>
+      <ul>
+        <li><a href="#about">Darjiling</a></li>
+        <li><a href="#about">Assam</a></li>
+        <li><a href="#about">Tamil Nadu</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#contact">Golghar Kachari</a></li>
+        <li><a href="#contact">Near Vissu Katra</a></li>
+        <li><a href="mailto:mihir.srivastava001@gamil.com">Email Us</a></li>
+      </ul>
+    </div>
+  </footer>
+  <div class="footer-bottom">© 2025 KeerTea Naturals. Varanasi, Uttar Pradesh.</div>
+
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h2>Your Cart</h2>
+      <button class="cart-close" onclick="toggleCart()">×</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total-row">
+        <span class="cart-total-label">Subtotal</span>
+        <span class="cart-total-val" id="cartSubtotal">Rs 0</span>
+      </div>
+      <div class="cart-total-row">
+        <span class="cart-total-label">Shipping</span>
+        <span class="cart-total-val">FREE</span>
+      </div>
+      <div class="cart-grand-row">
+        <span class="cart-grand-label">Total</span>
+        <span class="cart-grand-val" id="cartTotal">Rs 0</span>
+      </div>
+      <button class="checkout-btn" onclick="openCheckout()">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal">
+      <div class="modal-top">
+        <h2 class="modal-title">Checkout</h2>
+        <button class="modal-close" onclick="closeCheckout()">×</button>
+      </div>
+      <div class="modal-summary" id="checkoutSummary"></div>
+      <div class="modal-form">
+        <label>Full Name</label>
+        <input type="text" placeholder="Priya Sharma" id="chkName">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+91 98765 43210" id="chkPhone">
+        <label>Delivery Address</label>
+        <input type="text" placeholder="House No., Street, City - PIN" id="chkAddr">
+        <label>Payment Method</label>
+        <select id="chkPay">
+          <option>UPI / GPay / PhonePe</option>
+          <option>Net Banking</option>
+          <option>Credit / Debit Card</option>
+          <option>Cash on Delivery</option>
+        </select>
+      </div>
+      <button class="pay-btn" onclick="placeOrder()">Proceed to Payment</button>
+      <p class="modal-note">Secure and encrypted checkout. Your data is safe.</p>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="successModal">
+    <div class="modal success-modal">
+      <div class="success-icon">Done</div>
+      <h2 class="success-title">Order Placed!</h2>
+      <p class="success-msg" id="successMsg">Thank you for your order. We'll dispatch it shortly.<br><br>Expect delivery in 3-5 business days.</p>
+      <br>
+      <button class="btn-primary" style="margin:0 auto;display:block" onclick="closeSuccess()">Continue Shopping</button>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/storefront.js') }}"></script>
+</body>
+</html>

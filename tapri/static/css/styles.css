@@ -477,6 +477,36 @@ section { padding: 5rem 6vw; }
 .newsletter h2 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; margin-bottom: .5rem; }
 .newsletter p { opacity: .7; font-size: .9rem; margin-bottom: 1.6rem; }
 .nl-form { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; }
+.contact-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+  text-align: left;
+}
+.contact-card {
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 18px;
+  padding: 1.2rem;
+  backdrop-filter: blur(6px);
+}
+.contact-card h3 {
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--cream);
+  margin-bottom: .5rem;
+}
+.contact-card p {
+  margin: 0;
+  color: rgba(245,240,232,.88);
+  line-height: 1.7;
+}
+.contact-card a {
+  color: var(--cream);
+  text-decoration: none;
+}
 .nl-input {
   padding: .7rem 1.2rem; border-radius: 50px; border: none;
   background: rgba(255,255,255,.15); color: var(--cream);
